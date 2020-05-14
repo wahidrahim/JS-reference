@@ -26,7 +26,7 @@ describe('Queue', () => {
       size: 3,
     };
 
-    expect(JSON.stringify(queue)).toMatch(JSON.stringify(expectedQueue));
+    expect(queue).toMatchObject(expectedQueue);
   });
 
   test('dequeue()', () => {
