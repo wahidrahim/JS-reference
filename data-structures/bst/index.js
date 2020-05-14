@@ -64,6 +64,19 @@ class BST {
       }
     }
   }
+
+  getInOrderArray() {
+    const BSTarray = [];
+    const pushToArrayRecursively = (rootNode) => {
+      if (rootNode) {
+        pushToArrayRecursively(rootNode.left);
+        BSTarray.push(rootNode.value);
+        pushToArrayRecursively(rootNode.right);
+      }
+    };
+
+    return BSTarray;
+  }
 }
 
 export default BST;

@@ -12,8 +12,6 @@ describe('BST', () => {
     bst.insert(4);
     bst.insert(5);
 
-    console.log(bst);
-
     const expectedBST = {
       root: {
         value: 5,
@@ -43,5 +41,19 @@ describe('BST', () => {
     };
 
     expect(bst).toMatchObject(expectedBST);
+  });
+
+  test('getInOrderArray()', () => {
+    const bst = new BST();
+
+    bst.insert(5);
+    bst.insert(3);
+    bst.insert(7);
+    bst.insert(6);
+    bst.insert(8);
+    bst.insert(4);
+
+    bst.getInOrderArray();
+    // expect(bst.getInOrderArray()).toBe([3, 4, 5, 6, 7 8]);
   });
 });
