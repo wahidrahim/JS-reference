@@ -75,6 +75,8 @@ class BST {
       }
     };
 
+    pushToArrayRecursively(this.root);
+
     return BSTarray;
   }
 }

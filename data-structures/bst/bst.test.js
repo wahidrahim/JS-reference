@@ -53,7 +53,6 @@ describe('BST', () => {
     bst.insert(8);
     bst.insert(4);
 
-    bst.getInOrderArray();
-    // expect(bst.getInOrderArray()).toBe([3, 4, 5, 6, 7 8]);
+    expect(bst.getInOrderArray()).toEqual([3, 4, 5, 6, 7, 8]);
   });
 });
