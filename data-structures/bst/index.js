@@ -65,19 +65,71 @@ class BST {
     }
   }
 
-  getInOrderArray() {
-    const BSTarray = [];
+  inOrderArray() {
+    const bstArray = [];
     const pushToArrayRecursively = (rootNode) => {
       if (rootNode) {
         pushToArrayRecursively(rootNode.left);
-        BSTarray.push(rootNode.value);
+        bstArray.push(rootNode.value);
         pushToArrayRecursively(rootNode.right);
       }
     };
 
     pushToArrayRecursively(this.root);
 
-    return BSTarray;
+    return bstArray;
+  }
+
+  bfsArray() {
+    const queue = [];
+    const bstArray = [];
+
+    queue.push(this.root);
+
+    while (queue.length) {
+      const dequeuedNode = queue.shift();
+
+      bstArray.push(dequeuedNode.value);
+
+      if (dequeuedNode.left) {
+        queue.push(dequeuedNode.left);
+      }
+
+      if (dequeuedNode.right) {
+        queue.push(dequeuedNode.right);
+      }
+    }
+
+    return bstArray;
+  }
+
+  preOrderArray() {
+    const bstArray = [];
+    const pushToArrayRecursively = (rootNode) => {
+      if (rootNode) {
+        bstArray.push(rootNode.value);
+        pushToArrayRecursively(rootNode.left);
+        pushToArrayRecursively(rootNode.right);
+      }
+    };
+
+    pushToArrayRecursively(this.root);
+
+    return bstArray;
+  }
+
+  postOrderArray() {
+    const bstArray = [];
+
+    (function pushToArrayRecursively(rootNode) {
+      if (rootNode) {
+        pushToArrayRecursively(rootNode.left);
+        pushToArrayRecursively(rootNode.right);
+        bstArray.push(rootNode.value);
+      }
+    })(this.root);
+
+    return bstArray;
   }
 }
 
