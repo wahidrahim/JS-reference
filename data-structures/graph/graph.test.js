@@ -10,13 +10,15 @@ describe('Graph class', () => {
     graph.addVertex('Markham');
     graph.addVertex('Mississauga');
 
-    expect(graph.adjencyList).toEqual({
-      Toronto: [],
-      Ottawa: [],
-      Hamilton: [],
-      Markham: [],
-      Mississauga: [],
-    });
+    const expectedMap = new Map([
+      ['Toronto', []],
+      ['Ottawa', []],
+      ['Hamilton', []],
+      ['Markham', []],
+      ['Mississauga', []],
+    ]);
+
+    expect(graph.adjencyList).toEqual(expectedMap);
   });
 
   test('addEdge() method', () => {
@@ -32,12 +34,14 @@ describe('Graph class', () => {
     graph.addEdge('Ottawa', 'Hamilton');
     graph.addEdge('Markham', 'Toronto');
 
-    expect(graph.adjencyList).toEqual({
-      Toronto: ['Ottawa', 'Hamilton', 'Markham'],
-      Ottawa: ['Toronto', 'Hamilton'],
-      Hamilton: ['Toronto', 'Ottawa'],
-      Markham: ['Toronto'],
-    });
+    const expectedMap = new Map([
+      ['Toronto', ['Ottawa', 'Hamilton', 'Markham']],
+      ['Ottawa', ['Toronto', 'Hamilton']],
+      ['Hamilton', ['Toronto', 'Ottawa']],
+      ['Markham', ['Toronto']],
+    ]);
+
+    expect(graph.adjencyList).toEqual(expectedMap);
   });
 
   test('removeEdge() method', () => {
@@ -56,12 +60,14 @@ describe('Graph class', () => {
     graph.removeEdge('Ottawa', 'Toronto');
     graph.removeEdge('Hamilton', 'Ottawa');
 
-    expect(graph.adjencyList).toEqual({
-      Toronto: ['Hamilton', 'Markham'],
-      Ottawa: [],
-      Hamilton: ['Toronto'],
-      Markham: ['Toronto'],
-    });
+    const expectedMap = new Map([
+      ['Toronto', ['Hamilton', 'Markham']],
+      ['Ottawa', []],
+      ['Hamilton', ['Toronto']],
+      ['Markham', ['Toronto']],
+    ]);
+
+    expect(graph.adjencyList).toEqual(expectedMap);
   });
 
   test('removeVertex() method', () => {
@@ -79,10 +85,12 @@ describe('Graph class', () => {
 
     graph.removeVertex('Ottawa');
 
-    expect(graph.adjencyList).toEqual({
-      Toronto: ['Hamilton', 'Markham'],
-      Hamilton: ['Toronto'],
-      Markham: ['Toronto'],
-    });
+    const expectedMap = new Map([
+      ['Toronto', ['Hamilton', 'Markham']],
+      ['Hamilton', ['Toronto']],
+      ['Markham', ['Toronto']],
+    ]);
+
+    expect(graph.adjencyList).toEqual(expectedMap);
   });
 });
