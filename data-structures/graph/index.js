@@ -39,6 +39,7 @@ class Graph {
 
   dfs() {
     const visited = [];
+    const firstVertexName = this.adjList.keys().next().value;
 
     const recursiveDFS = (vName) => {
       if (vName && !visited.includes(vName)) {
@@ -48,7 +49,7 @@ class Graph {
       }
     };
 
-    recursiveDFS(this.adjList.keys().next().value);
+    recursiveDFS(firstVertexName);
 
     return visited;
   }
