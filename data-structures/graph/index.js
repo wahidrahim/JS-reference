@@ -1,40 +1,56 @@
 class Graph {
-  adjencyList = null;
+  adjList = null;
 
   constructor() {
-    this.adjencyList = new Map();
+    this.adjList = new Map();
   }
 
-  addVertex(vertex) {
-    if (!this.adjencyList.has(vertex)) {
-      this.adjencyList.set(vertex, []);
+  addVertex(v) {
+    if (!this.adjList.has(v)) {
+      this.adjList.set(v, []);
     }
   }
 
-  addEdge(vertex1, vertex2) {
-    this.adjencyList.get(vertex1).push(vertex2);
-    this.adjencyList.get(vertex2).push(vertex1);
+  addEdge(v1, v2) {
+    this.adjList.get(v1).push(v2);
+    this.adjList.get(v2).push(v1);
   }
 
-  removeEdge(vertex1, vertex2) {
-    this.adjencyList.set(
-      vertex1,
-      this.adjencyList.get(vertex1).filter((vertex) => vertex !== vertex2)
+  removeEdge(v1, v2) {
+    this.adjList.set(
+      v1,
+      this.adjList.get(v1).filter((v) => v !== v2)
     );
-    this.adjencyList.set(
-      vertex2,
-      this.adjencyList.get(vertex2).filter((vertex) => vertex !== vertex1)
+    this.adjList.set(
+      v2,
+      this.adjList.get(v2).filter((v) => v !== v1)
     );
   }
 
-  removeVertex(vertex) {
-    if (this.adjencyList.has(vertex)) {
-      this.adjencyList.get(vertex).forEach((adjecentVertex) => {
-        this.removeEdge(vertex, adjecentVertex);
+  removeVertex(v) {
+    if (this.adjList.has(v)) {
+      this.adjList.get(v).forEach((adjecentVertex) => {
+        this.removeEdge(v, adjecentVertex);
       });
 
-      this.adjencyList.delete(vertex);
+      this.adjList.delete(v);
     }
+  }
+
+  dfs() {
+    const visited = [];
+
+    const recursiveDFS = (vName) => {
+      if (vName && !visited.includes(vName)) {
+        visited.push(vName);
+
+        this.adjList.get(vName).forEach((vName) => recursiveDFS(vName));
+      }
+    };
+
+    recursiveDFS(this.adjList.keys().next().value);
+
+    return visited;
   }
 }
 
