@@ -116,7 +116,7 @@ describe('Graph class', () => {
     expect(graph.dfs()).toEqual(['A', 'B', 'C', 'E', 'D', 'F']);
   });
 
-  test('depth first search - iterative', () => {
+  test('breadth first search', () => {
     const graph = new Graph();
 
     graph.addVertex('A');
@@ -135,6 +135,6 @@ describe('Graph class', () => {
     graph.addEdge('E', 'C');
     graph.addEdge('C', 'F');
 
-    expect(graph.dfsIterative()).toEqual(['A', 'B', 'C', 'E', 'D', 'F']);
+    expect(graph.bfs()).toEqual(['A', 'B', 'D', 'E', 'C', 'F']);
   });
 });
