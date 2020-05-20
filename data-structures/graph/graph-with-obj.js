@@ -70,10 +70,9 @@ class Graph {
   bfs() {
     const result = [];
     const visited = {};
-    const queue = [];
     const firstVertex = Object.keys(this.adjList)[0];
+    const queue = [firstVertex];
 
-    queue.push(firstVertex);
     visited[firstVertex] = true;
 
     while (queue.length) {
