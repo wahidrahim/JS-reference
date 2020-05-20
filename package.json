@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "test": "jest"
+    "test": "jest --verbose=true"
   },
   "dependencies": {
     "@babel/core": "^7.9.6",

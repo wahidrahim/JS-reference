@@ -28,9 +28,7 @@ class Graph {
     const result = [];
     const visited = {};
     const firstVertex = Object.keys(this.adjList)[0];
-    let c = 0;
     const recursDFS = (v) => {
-      // console.log(++c);
       visited[v] = true;
       result.push(v);
       this.adjList[v].forEach((vChild) => {
@@ -48,20 +46,22 @@ class Graph {
   dfsIterative() {
     const result = [];
     const visited = {};
-    const stack = [];
     const firstVertex = Object.keys(this.adjList)[0];
+    const stack = [firstVertex];
 
-    stack.push(firstVertex);
+    visited[firstVertex] = true;
 
     while (stack.length) {
       const v = stack.pop();
 
-      if (!visited[v]) {
-        visited[v] = true;
-        result.push(v);
+      result.push(v);
 
-        this.adjList[v].forEach((vChild) => stack.push(vChild));
-      }
+      this.adjList[v].forEach((vChild) => {
+        if (!visited[vChild]) {
+          visited[vChild] = true;
+          stack.push(vChild);
+        }
+      });
     }
 
     return result;
