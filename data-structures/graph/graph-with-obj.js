@@ -25,18 +25,45 @@ class Graph {
   }
 
   dfs() {
-    const visited = [];
+    const result = [];
+    const visited = {};
     const firstVertex = Object.keys(this.adjList)[0];
     const recursDFS = (v) => {
-      if (v && !visited.includes(v)) {
-        visited.push(v);
-        this.adjList[v].forEach((vChild) => recursDFS(vChild));
-      }
+      visited[v] = true;
+      result.push(v);
+      this.adjList[v].forEach((vChild) => {
+        if (!visited[vChild]) {
+          recursDFS(vChild);
+        }
+      });
     };
 
     recursDFS(firstVertex);
 
-    return visited;
+    return result;
+  }
+
+  dfsIterative() {
+    const result = [];
+    const stack = [];
+    const visited = {};
+    const firstVertex = Object.keys(this.adjList)[0];
+
+    stack.push(firstVertex);
+
+    while (stack.length) {
+      const v = stack.pop();
+
+      if (!visited[v]) {
+        visited[v] = true;
+        result.push(v);
+
+        this.adjList[v].forEach((vChild) => stack.push(vChild));
+      }
+    }
+
+    console.log(result);
+    return result;
   }
 }
 
