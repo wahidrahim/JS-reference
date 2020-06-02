@@ -5,69 +5,34 @@ class MaxHeap {
     this.values.push(value);
 
     let childIdx = this.values.length - 1;
-    let parentIdx = Math.floor((childIdx - 1) / 2);
-    let child = this.values[childIdx];
-    let parent = this.values[parentIdx];
+    let parentIdx = this.parentIdxOf(childIdx);
 
-    while (parent < child) {
-      // Swap parent and child
-      this.values[parentIdx] = child;
-      this.values[childIdx] = parent;
+    while (this.values[parentIdx] < this.values[childIdx]) {
+      this.swap(parentIdx, childIdx);
 
-      childIdx = parentIdx;
-      parentIdx = Math.floor((childIdx - 1) / 2);
-      child = this.values[childIdx];
-      parent = this.values[parentIdx];
+      childIdx = this.parentIdxOf(childIdx);
+      parentIdx = this.parentIdxOf(childIdx);
     }
-
-    return this.values;
   }
 
-  extractMax() {
-    const max = this.values[0];
+  /**
+   * Utility function to get the index of the parent of a child node
+   * @param {number} idx - index of an element
+   */
+  parentIdxOf(idx) {
+    return Math.floor((idx - 1) / 2);
+  }
 
-    if (this.values.length === 1) {
-      this.values.pop();
+  /**
+   * Utility method to swap to elements' positions in `this.values`
+   * @param {number} idx1 - index of element 1
+   * @param {number} idx2 - index of element 2
+   */
+  swap(idx1, idx2) {
+    const backup = this.values[idx1];
 
-      return max;
-    }
-
-    this.values[0] = this.values.pop();
-
-    // Edge cases
-    if (this.values.length <= 2) {
-      if (this.values[0] < this.values[1]) {
-        this.values = [this.values[1], this.values[0]];
-      }
-
-      return max;
-    }
-
-    let parentIdx = 0;
-    let leftChildIdx = parentIdx * 2 + 1;
-    let rightChildIdx = parentIdx * 2 + 2;
-    let parent = this.values[parentIdx];
-    let leftChild = this.values[leftChildIdx];
-    let rightChild = this.values[rightChildIdx];
-
-    while (parent < leftChild || parent < rightChild) {
-      if (leftChild > rightChild) {
-        this.values[leftChildIdx] = parent;
-        this.values[parentIdx] = leftChild;
-        parentIdx = leftChildIdx;
-      } else {
-        this.values[rightChildIdx] = parent;
-        this.values[parentIdx] = rightChild;
-        parentIdx = rightChildIdx;
-      }
-
-      leftChildIdx = parentIdx * 2 + 1;
-      rightChildIdx = parentIdx * 2 + 2;
-      parent = this.values[parentIdx];
-      leftChild = this.values[leftChildIdx];
-      rightChild = this.values[rightChildIdx];
-    }
-    return max;
+    this.values[idx1] = this.values[idx2];
+    this.values[idx2] = backup;
   }
 }
 

@@ -29,6 +29,14 @@ describe('MaxHeap class', () => {
     maxHeap.insert(33);
 
     expect(maxHeap.values).toEqual([33, 33, 12, 12, 9, 11, 12, 1]);
+
+    maxHeap.insert(111);
+
+    expect(maxHeap.values).toEqual([111, 33, 12, 33, 9, 11, 12, 1, 12]);
+
+    maxHeap.insert(-1);
+
+    expect(maxHeap.values).toEqual([111, 33, 12, 33, 9, 11, 12, 1, 12, -1]);
   });
 
   test('extractMax method', () => {
