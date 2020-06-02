@@ -1,4 +1,5 @@
-import Graph from './graph-with-obj';
+// import Graph from './graph-with-obj';
+import Graph from './graph';
 
 describe('Graph class', () => {
   test('addVertex() method', () => {
@@ -116,27 +117,27 @@ describe('Graph class', () => {
     expect(graph.dfs()).toEqual(['A', 'B', 'C', 'E', 'D', 'F']);
   });
 
-  test('depth first search - iterative', () => {
-    const graph = new Graph();
+  // test('depth first search - iterative', () => {
+  //   const graph = new Graph();
 
-    graph.addVertex('A');
-    graph.addVertex('B');
-    graph.addVertex('C');
-    graph.addVertex('D');
-    graph.addVertex('E');
-    graph.addVertex('F');
+  //   graph.addVertex('A');
+  //   graph.addVertex('B');
+  //   graph.addVertex('C');
+  //   graph.addVertex('D');
+  //   graph.addVertex('E');
+  //   graph.addVertex('F');
 
-    graph.addEdge('A', 'B');
-    graph.addEdge('A', 'D');
-    graph.addEdge('A', 'E');
-    graph.addEdge('B', 'C');
-    graph.addEdge('D', 'E');
-    graph.addEdge('E', 'F');
-    graph.addEdge('E', 'C');
-    graph.addEdge('C', 'F');
+  //   graph.addEdge('A', 'B');
+  //   graph.addEdge('A', 'D');
+  //   graph.addEdge('A', 'E');
+  //   graph.addEdge('B', 'C');
+  //   graph.addEdge('D', 'E');
+  //   graph.addEdge('E', 'F');
+  //   graph.addEdge('E', 'C');
+  //   graph.addEdge('C', 'F');
 
-    expect(graph.dfsIterative()).toEqual(['A', 'E', 'C', 'F', 'D', 'B']);
-  });
+  //   expect(graph.dfsIterative()).toEqual(['A', 'E', 'C', 'F', 'D', 'B']);
+  // });
 
   test('breadth first search', () => {
     const graph = new Graph();
