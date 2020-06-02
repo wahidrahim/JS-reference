@@ -11,7 +11,7 @@ class MaxHeap {
 
     while (parent < child) {
       // Swap parent and child
-      this.values[parentIdx] = this.values[childIdx];
+      this.values[parentIdx] = child;
       this.values[childIdx] = parent;
 
       childIdx = parentIdx;
@@ -26,7 +26,22 @@ class MaxHeap {
   extractMax() {
     const max = this.values[0];
 
+    if (this.values.length === 1) {
+      this.values.pop();
+
+      return max;
+    }
+
     this.values[0] = this.values.pop();
+
+    // Edge cases
+    if (this.values.length <= 2) {
+      if (this.values[0] < this.values[1]) {
+        this.values = [this.values[1], this.values[0]];
+      }
+
+      return max;
+    }
 
     let parentIdx = 0;
     let leftChildIdx = parentIdx * 2 + 1;
@@ -35,13 +50,13 @@ class MaxHeap {
     let leftChild = this.values[leftChildIdx];
     let rightChild = this.values[rightChildIdx];
 
-    while (leftChild > parent || rightChild > parent) {
-      if (rightChild > leftChild) {
-        this.values[leftChildIdx] = this.values[parentIdx];
+    while (parent < leftChild || parent < rightChild) {
+      if (leftChild > rightChild) {
+        this.values[leftChildIdx] = parent;
         this.values[parentIdx] = leftChild;
         parentIdx = leftChildIdx;
       } else {
-        this.values[rightChildIdx] = this.values[parentIdx];
+        this.values[rightChildIdx] = parent;
         this.values[parentIdx] = rightChild;
         parentIdx = rightChildIdx;
       }
@@ -52,7 +67,6 @@ class MaxHeap {
       leftChild = this.values[leftChildIdx];
       rightChild = this.values[rightChildIdx];
     }
-
     return max;
   }
 }
