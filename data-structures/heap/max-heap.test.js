@@ -56,11 +56,11 @@ describe('MaxHeap class', () => {
     expect(maxHeap.extractMax()).toEqual(33);
     expect(maxHeap.values).toEqual([12, 12, 12, 1, 9, 11]);
     expect(maxHeap.extractMax()).toEqual(12);
-    expect(maxHeap.values).toEqual([12, 12, 11, 1, 9]);
+    expect(maxHeap.values).toEqual([12, 11, 12, 1, 9]);
     expect(maxHeap.extractMax()).toEqual(12);
-    expect(maxHeap.values).toEqual([12, 9, 11, 1]);
+    expect(maxHeap.values).toEqual([12, 11, 9, 1]);
     expect(maxHeap.extractMax()).toEqual(12);
-    expect(maxHeap.values).toEqual([11, 9, 1]);
+    expect(maxHeap.values).toEqual([11, 1, 9]);
     expect(maxHeap.extractMax()).toEqual(11);
     expect(maxHeap.values).toEqual([9, 1]);
     expect(maxHeap.extractMax()).toEqual(9);
